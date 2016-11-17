@@ -10,7 +10,7 @@ curl "api_endpoint"
 
 Data on Reflektive's platform can be retrieved by authenticating with a company's secret API key.
 
-The company's API key can be used to retrieve data on behalf of the entire company. To obtain an API key, please contact your account manager at Reflektive.
+The company's API key can be used to retrieve data on behalf of the entire company. To obtain an API key, please reach out to [support@reflektive.com](mailto:support@reflektive.com)
 
 Authentication to the API is performed via token authentication using HTTP headers. For example, the following header can be used to authenticate:
 

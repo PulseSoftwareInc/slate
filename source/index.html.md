@@ -7,6 +7,6 @@ language_tabs:
 includes:
   - authentication
   - resources
-  - errors
+  - responses
 
 ---

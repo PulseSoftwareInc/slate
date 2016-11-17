@@ -2,7 +2,7 @@
 
 ## Employee
 
-An Employee is an object that represents a user working for a company who is enrolled in Reflektive.
+An Employee is an object that represents a user working for a Reflektive company.
 
 ### Attributes
 
@@ -13,9 +13,9 @@ email       | The email address of the employee
 name        | The employee's full name, for example: "John Smith"
 photo       | A URL pointing to a photograph of the employee (if one is available)
 
-## Realtime Feedback
+## Real-time Feedback
 
-Realtime Feedback represents an instance of feedback that was given from a sender to a recipient, with
+Real-time Feedback represents an instance of feedback that was given from a sender to a recipient, with
 text content created by the sender.
 
 ### Attributes
