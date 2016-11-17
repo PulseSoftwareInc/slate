@@ -31,8 +31,8 @@ created_at  | The time the feedback was created and sent
 ### Endpoints
 
 ```shell
-curl "http://api.reflektive.com/v1/real-time-feedback?created_after=1477877614"
-  -H "Authorization: authenticated_token"
+curl "https://api.reflektive.com/v1/real-time-feedback?created_after=1477877614"
+  -H "Authorization: token=authentication_token"
 ```
 
 > Sample JSON Response
@@ -88,7 +88,7 @@ links with page numbers directing to the next and last pages of results will be 
 
 ### Endpoint
 
-`GET http://api.reflektive.com/v1/real-time-feedback`
+`GET https://api.reflektive.com/v1/real-time-feedback`
 
 ### Query Parameters
 
