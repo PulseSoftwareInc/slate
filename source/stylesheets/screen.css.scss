@@ -110,8 +110,8 @@ html, body {
     }
   }
 
-  img+.tocify {
-    margin-top: $logo-margin;
+  img {
+    margin: $logo-margin;
   }
 
   .search-results {
