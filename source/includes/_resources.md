@@ -32,7 +32,7 @@ created_at  | The time the feedback was created and sent
 
 ```shell
 curl "https://api.reflektive.com/v1/real-time-feedback?created_after=1477877614"
-  -H "Authorization: token=authentication_token"
+  -H "Authorization: Token token=authentication_token"
 ```
 
 > Sample JSON Response
