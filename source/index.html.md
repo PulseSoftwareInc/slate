@@ -6,7 +6,10 @@ language_tabs:
 
 includes:
   - authentication
-  - resources
+  - employees
+  - real_time_feedback
+  - tasks
+  - reports
   - responses
 
 ---
