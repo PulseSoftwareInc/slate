@@ -40,7 +40,54 @@ curl "https://api.reflektive.com/v1/real-time-feedback?created_after=1477877614"
 ```json
 {
   "links": {
-  "self": "/v1/real-time-feedback?created_after=1477877614"
+    "self": "/v1/real-time-feedback?created_after=1477877614"
+  },
+  "data": [
+    {
+      "uuid": "e8678ff9-3ae4-4b2b-b7af-f7240155f753",
+      "sender": {
+        "uuid": "04b09952-6b79-454e-8306-9c7f015267b5",
+        "email": "darth.vader@example.com",
+        "name": "Darth Vader",
+        "photo": "https://www.example.com/darth.vader.jpg"
+      },
+      "recipient": {
+        "uuid": "addd9666-788a-4eb6-82a2-225a7600e4c9",
+        "email": "luke.skywalker@example.com",
+        "name": "Luke Skywalker",
+        "photo": "https://www.example.com/luke.skywalker.jpg"
+      },
+      "content": "Most impressive.",
+      "created_at": "2016-10-31T23:43:20Z"
+    },
+    {
+      "uuid": "ab5eea44-bfd6-4e16-8129-12963efd054b",
+      "sender": {
+        "uuid": "4dd3d0f0-d856-4981-b376-5602c07cad4f",
+        "email": "chewbacca@example.com",
+        "name": "Chewbacca",
+        "photo": "https://www.example.com/chewbacca.jpg"
+      },
+      "recipient": {
+        "uuid": "962e6d3a-ade5-4bc7-8672-70236075be5a",
+        "email": "han.solo@example.com",
+        "name": "Han Solo",
+        "photo": "https://www.example.com/han.solo.jpg"
+      },
+      "content": "Raawwrr",
+      "created_at": "2016-10-31T23:22:28Z"
+    }
+  ]
+}
+```
+> Sample Paginated JSON Response
+
+```json
+{
+  "links": {
+      "self": "/v1/real-time-feedback?created_after=1477877614",
+      "next": "/v1/real-time-feedback?created_after=1477877614?page=2",
+      "last": "/v1/real-time-feedback?created_after=1477877614?page=5"
   },
   "data": [
     {
