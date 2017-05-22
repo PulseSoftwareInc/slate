@@ -133,7 +133,7 @@ curl <span class="s2">"api_endpoint"</span>
 You must replace <code>fake_token</code> with your personal API key.
 </aside>
 
-          <h1 id="resources">Resources</h1>
+          <h1 id="v1-resources">V1 Resources</h1>
 
 <h2 id="employee">Employee</h2>
 
@@ -165,7 +165,7 @@ You must replace <code>fake_token</code> with your personal API key.
 </tr>
 </tbody></table>
 
-          <h2 id="real-time-feedback">Real-time Feedback</h2>
+<h2 id="real-time-feedback">Real-time Feedback</h2>
 
 <p>Real-time Feedback represents an instance of feedback that was given from a sender to a recipient, with
 text content created by the sender.</p>
@@ -334,7 +334,7 @@ links with page numbers directing to the next and last pages of results will be 
 </tr>
 </tbody></table>
 
-          <h2 id="task">Task</h2>
+<h2 id="task">Task</h2>
 
 <p>Tasks keep track of the status of a particular job. For instance, Tasks are used to monitor the status
 of report generations and are updated upon completion or failure of these report generation jobs.</p>
@@ -394,7 +394,7 @@ of report generations and are updated upon completion or failure of these report
 
 <p><code class="prettyprint">GET https://api.reflektive.com/v1/task/:uuid</code></p>
 
-          <h2 id="report">Report</h2>
+<h2 id="report">Report</h2>
 
 <p>Generate reports by submitting HTTP POST requests. These endpoints will kick off a report generation
 and return the uuid of a Task in order to monitor the status of the report generation.
@@ -422,6 +422,211 @@ Keep track of a Task&rsquo;s status using the <code class="prettyprint">GET http
 <h3 id="endpoint">Endpoint</h3>
 
 <p><code class="prettyprint">POST https://api.reflektive.com/v1/reports/reviews?report_type=calibrations&amp;cycle_uuid=:uuid</code></p>
+
+          <h1 id="v2-resources">V2 Resources</h1>
+
+<h2 id="real-time-feedback">Real-time Feedback</h2>
+
+<p>Real-time Feedback represents an instance of feedback that was given from a sender to a recipient, with
+text content created by the sender. The V2 version of this endpoint provides support for Team Recognition, or Real-time
+Feedback with multiple recipients.</p>
+
+<h3 id="attributes">Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid</td>
+<td>A unique identifier associated with this feedback</td>
+</tr>
+<tr>
+<td>sender</td>
+<td>An Employee object, the person who gave the feedback</td>
+</tr>
+<tr>
+<td>recipients</td>
+<td>An array of Employee objects, the people who received the feedback</td>
+</tr>
+<tr>
+<td>content</td>
+<td>The publicly visible content of the feedback</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>The time the feedback was created and sent</td>
+</tr>
+</tbody></table>
+
+<h3 id="endpoints">Endpoints</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.reflektive.com/v2/real-time-feedback?created_after=1477877614"</span>
+  -H <span class="s2">"Authorization: Token token=authentication_token"</span>
+</code></pre>
+
+<blockquote>
+<p>Sample JSON Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v2/real-time-feedback?created_after=1477877614"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e8678ff9-3ae4-4b2b-b7af-f7240155f753"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sender"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04b09952-6b79-454e-8306-9c7f015267b5"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"darth.vader@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Darth Vader"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com/darth.vader.jpg"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"recipients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addd9666-788a-4eb6-82a2-225a7600e4c9"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"luke.skywalker@example.com"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Luke Skywalker"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com/luke.skywalker.jpg"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Most impressive."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-31T23:43:20Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ab5eea44-bfd6-4e16-8129-12963efd054b"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sender"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4dd3d0f0-d856-4981-b376-5602c07cad4f"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chewbacca@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chewbacca"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com/chewbacca.jpg"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"recipients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"962e6d3a-ade5-4bc7-8672-70236075be5a"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"han.solo@example.com"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Han Solo"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com/han.solo.jpg"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e4f3d7e4-47c1-4dfc-8dc5-0b05f625840b"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rey@example.com"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rey"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com/rey.jpg"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fff3d7e4-4bc1-4efc-adc5-0b05f953840f"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b.b.8@example.com"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BB-8"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com/bb8.jpg"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Raawwrr"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-31T23:22:28Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<blockquote>
+<p>Sample Paginated JSON Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v2/real-time-feedback?created_after=1477877614"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v2/real-time-feedback?created_after=1477877614?page=2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v2/real-time-feedback?created_after=1477877614?page=5"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e8678ff9-3ae4-4b2b-b7af-f7240155f753"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sender"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04b09952-6b79-454e-8306-9c7f015267b5"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"darth.vader@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Darth Vader"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com/darth.vader.jpg"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"recipients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addd9666-788a-4eb6-82a2-225a7600e4c9"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"luke.skywalker@example.com"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Luke Skywalker"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com/luke.skywalker.jpg"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Most impressive."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-31T23:43:20Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ab5eea44-bfd6-4e16-8129-12963efd054b"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sender"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4dd3d0f0-d856-4981-b376-5602c07cad4f"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chewbacca@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chewbacca"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com/chewbacca.jpg"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"recipients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"962e6d3a-ade5-4bc7-8672-70236075be5a"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"han.solo@example.com"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Han Solo"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com/han.solo.jpg"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e4f3d7e4-47c1-4dfc-8dc5-0b05f625840b"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rey@example.com"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rey"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com/rey.jpg"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fff3d7e4-4bc1-4efc-adc5-0b05f953840f"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b.b.8@example.com"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BB-8"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com/bb8.jpg"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Raawwrr"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-31T23:22:28Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="list-all-public-positive-feedback">List all public, positive feedback</h3>
+
+<p>By default, results are paginated with 200 results per query. If your request returns more than 200 results,
+links with page numbers directing to the next and last pages of results will be provided in the JSON response.</p>
+
+<h3 id="endpoint">Endpoint</h3>
+
+<p><code class="prettyprint">GET https://api.reflektive.com/v2/real-time-feedback</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>created_before</td>
+<td>Time the request was issued</td>
+<td>A UNIX timestamp representing the oldest time a feedback was created</td>
+</tr>
+<tr>
+<td>created_after</td>
+<td>1 day prior to the time the request was issued</td>
+<td>UNIX timestamp representing the most recent time a feedback was created</td>
+</tr>
+<tr>
+<td>page</td>
+<td>1</td>
+<td>An offset for the feedback results. The endpoint will return 200 results per query</td>
+</tr>
+</tbody></table>
 
           <h1 id="responses">Responses</h1>
 
